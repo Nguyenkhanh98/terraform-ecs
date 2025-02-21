@@ -11,7 +11,6 @@ terraform.tfstate.backup
 crash.log
 
 # Ignore Terraform variables files (may contain sensitive data)
-terraform.tfvars
 *.tfvars
 *.tfvars.json
 
