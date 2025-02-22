@@ -1,7 +1,12 @@
 
 # Create the IAM Role only if it doesn't exist
-resource "aws_iam_role" "ecs_instance_role" {
+data "aws_iam_role" "existing_ecs_instance_role" {
   name = "ecsInstanceRole"
+}
+
+resource "aws_iam_role" "ecs_instance_role" {
+  count = length(data.aws_iam_role.existing_ecs_instance_role.arn) > 0 ? 0 : 1
+  name  = "ecsInstanceRole"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -14,7 +19,6 @@ resource "aws_iam_role" "ecs_instance_role" {
     }]
   })
 }
-
 # Create an instance profile for the role
 resource "aws_iam_instance_profile" "ecs_instance_profile" {
   name = "ecsInstanceProfile"
