@@ -30,7 +30,7 @@ resource "aws_lb_listener_rule" "onair_fe_rule" {
   }
 }
 resource "aws_lb_listener_rule" "onair_host_rule" {
-  listener_arn = aws_lb_listener.https_listener.arn
+  listener_arn = aws_lb_listener.onair_http_listener.arn
   priority     = 30
 
   condition {
