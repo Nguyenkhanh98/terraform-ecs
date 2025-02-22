@@ -38,6 +38,8 @@ resource "aws_security_group" "ecs_sg" {
     cidr_blocks = [var.vpc_cidr_block]
   }
 
+  
+
   egress {
     from_port   = 0
     to_port     = 0

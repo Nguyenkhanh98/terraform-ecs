@@ -28,9 +28,15 @@ EOF
       Name = "primary-ecs-instance"
     }
   }
+
+    network_interfaces {
+    associate_public_ip_address = true
+    security_groups             = [aws_security_group.ecs_sg.id]
+  }
 }
 
 resource "aws_autoscaling_group" "primary_ecs_asg" {
+  name = "primary-ecs-asg"
   vpc_zone_identifier = var.subnet_ids
   min_size            = 2
   max_size            = 4
