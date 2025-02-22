@@ -1,3 +1,6 @@
+data "aws_launch_template" "ecs_launch_template" {
+  id = aws_launch_template.ecs_launch_template.id
+}
 
 resource "aws_launch_template" "ecs_launch_template" {
   name          = "primary-ecs-asg"
@@ -48,8 +51,8 @@ resource "aws_autoscaling_group" "primary_ecs_asg" {
   desired_capacity    = 2
 
   launch_template {
-    id      = aws_launch_template.ecs_launch_template.id
-    version = "$Latest"
+   id      = aws_launch_template.ecs_launch_template.id
+    version = data.aws_launch_template.ecs_launch_template.latest_version
   }
   tag {
     key                 = "aws:ecs:cluster"
