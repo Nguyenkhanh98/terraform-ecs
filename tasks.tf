@@ -5,7 +5,7 @@ resource "aws_ecs_task_definition" "onair_fe" {
   network_mode             = "bridge"
   memory                   = "512"
   cpu                      = "256"
-
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   container_definitions = jsonencode([
     {
       name         = "onair_fe-container"
@@ -28,6 +28,7 @@ resource "aws_ecs_task_definition" "onair_admin" {
   network_mode             = "bridge"
   memory                   = "512"
   cpu                      = "256"
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
   container_definitions = jsonencode([
     {
@@ -51,6 +52,7 @@ resource "aws_ecs_task_definition" "onair_host" {
   network_mode             = "bridge"
   memory                   = "512"
   cpu                      = "256"
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
   container_definitions = jsonencode([
     {
@@ -74,6 +76,7 @@ resource "aws_ecs_task_definition" "onair-api" {
   network_mode             = "bridge"
   memory                   = "512"
   cpu                      = "256"
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
   container_definitions = jsonencode([
     {
@@ -98,6 +101,7 @@ resource "aws_ecs_task_definition" "cms" {
   network_mode             = "bridge"
   memory                   = "1024"
   cpu                      = "512"
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
   container_definitions = jsonencode([
     {
