@@ -30,7 +30,7 @@ resource "aws_lb_target_group" "onair_api_tg" {
   target_type = "instance"
 }
 
-resource "aws_lb_target_group" "cms_tg" {
+resource "aws_lb_target_group" "onair_cms_tg" {
   name        = "cms-tg"
   port        = 1338
   protocol    = "HTTP"
