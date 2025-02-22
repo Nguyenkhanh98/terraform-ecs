@@ -41,7 +41,7 @@ EOF
 }
 
 resource "aws_autoscaling_group" "primary_ecs_asg" {
-  name = "primary-ecs-asg"
+  name = "primary-ecs"
   vpc_zone_identifier = var.subnet_ids
   min_size            = 2
   max_size            = 4
