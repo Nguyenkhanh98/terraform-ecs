@@ -1,7 +1,7 @@
 
 resource "aws_launch_template" "ecs_launch_template" {
   name          = "primary-ecs-asg"
-  image_id      = "ami-041af6780897cc503"
+  image_id      = "ami-0dcc5763998b96f0b"
   instance_type = "t3.micro"
 
    key_name      =     "sysops"
