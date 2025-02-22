@@ -13,6 +13,11 @@ resource "aws_ecs_capacity_provider" "primary_capacity_provider" {
     }
     managed_termination_protection = "ENABLED"
   }
+    tag {
+    key                 = "aws:ecs:cluster"
+    value               = aws_ecs_cluster.primary_cluster.name
+    propagate_at_launch = true
+  }
 }
 
 resource "aws_ecs_cluster_capacity_providers" "primary" {

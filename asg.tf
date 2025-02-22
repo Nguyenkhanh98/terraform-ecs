@@ -18,7 +18,10 @@ iam_instance_profile {
 #!/bin/bash
 echo "ECS_CLUSTER=${aws_ecs_cluster.primary_cluster.name}" >> /etc/ecs/ecs.config
 echo "ECS_BACKEND_HOST=" >> /etc/ecs/ecs.config
+sudo systemctl enable --now ecs.service
+cat /etc/ecs/ecs.config
 sudo systemctl restart ecs
+
 EOF
   )
 
@@ -47,6 +50,12 @@ resource "aws_autoscaling_group" "primary_ecs_asg" {
     version = "$Latest"
   }
   tag {
+    key                 = "aws:ecs:cluster"
+    value               = aws_ecs_cluster.primary_cluster.name
+    propagate_at_launch = true
+  }
+
+   tag {
     key                 = "Name"
     value               = "primary-ecs-instance"
     propagate_at_launch = true
