@@ -5,7 +5,7 @@ data "aws_launch_template" "ecs_launch_template" {
 resource "aws_launch_template" "ecs_launch_template" {
   name          = "primary-ecs-asg"
   image_id      = "ami-07c2124e08654f931"
-  instance_type = "t3.micro"
+  instance_type = "t3.medium"
 
    key_name      =     "sysops"
 iam_instance_profile {
