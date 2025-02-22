@@ -4,3 +4,4 @@ subnet_ids       = ["subnet-00d5bc668307b044a", "subnet-0562fae8bbdf8997a", "sub
 ecs_cluster_name = "primary-cluster"
 nlb              = "primary-nlb"
 onairdomain      = "onair.today"
+vpc_cidr_block   = "172.31.0.0/16"

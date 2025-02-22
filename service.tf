@@ -14,8 +14,8 @@ resource "aws_ecs_service" "onair_admin_service" {
   task_definition = aws_ecs_task_definition.onair_admin.arn
   desired_count   = 2
   launch_type     = "EC2"
-    
-    load_balancer {
+
+  load_balancer {
     target_group_arn = aws_lb_target_group.onair_fe_tg.arn
     container_name   = "onair-fe"
     container_port   = 3000
@@ -30,7 +30,7 @@ resource "aws_ecs_service" "onair_host_service" {
   desired_count   = 2
   launch_type     = "EC2"
 
-   load_balancer {
+  load_balancer {
     target_group_arn = aws_lb_target_group.onair_host_tg.arn
     container_name   = "onair-host"
     container_port   = 3001
@@ -45,7 +45,7 @@ resource "aws_ecs_service" "onair_api_service" {
   desired_count   = 2
   launch_type     = "EC2"
 
-     load_balancer {
+  load_balancer {
     target_group_arn = aws_lb_target_group.onair_admin_tg.arn
     container_name   = "onair-admin"
     container_port   = 3003
@@ -60,7 +60,7 @@ resource "aws_ecs_service" "cms_service" {
   desired_count   = 2
   launch_type     = "EC2"
 
-   load_balancer {
+  load_balancer {
     target_group_arn = aws_lb_target_group.onair_admin_tg.arn
     container_name   = "onair-cms"
     container_port   = 1338

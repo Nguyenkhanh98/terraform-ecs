@@ -33,3 +33,10 @@ variable "onairdomain" {
   type        = string
   default     = "onair.today"
 }
+
+variable "vpc_cidr_block" {
+  description = "VPC CIDR block"
+  type        = string
+  default     = "sad"
+
+}
