@@ -2,7 +2,7 @@ resource "aws_ecs_cluster" "primary_cluster" {
   name = var.ecs_cluster_name
 }
 
-resource "aws_ecs_capacity_provider" "primary_capacity_provider" {
+resource "aws_ecs_capacity_provider" "primary_provider" {
   name = "primary-provider"
 
   auto_scaling_group_provider {
@@ -19,5 +19,5 @@ resource "aws_ecs_capacity_provider" "primary_capacity_provider" {
 resource "aws_ecs_cluster_capacity_providers" "primary" {
   cluster_name = aws_ecs_cluster.primary_cluster.name
 
-  capacity_providers = [aws_ecs_capacity_provider.primary_capacity_provider.name]
+  capacity_providers = [aws_ecs_capacity_provider.primary_provider.name]
 }
