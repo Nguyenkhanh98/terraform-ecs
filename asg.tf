@@ -11,7 +11,7 @@ iam_instance_profile {
   block_device_mappings {
     device_name = "/dev/xvda"
     ebs {
-      volume_size = 40
+      volume_size = 50
     }
   }
   
