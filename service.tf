@@ -24,7 +24,7 @@ resource "aws_ecs_service" "onair_admin_service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_fe_tg.arn
     container_name   = "onair_admin-container"
-    container_port   = 3000
+    container_port   = 3003
   }
 }
 

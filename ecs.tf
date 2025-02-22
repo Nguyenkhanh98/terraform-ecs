@@ -7,12 +7,10 @@ resource "aws_ecs_capacity_provider" "primary_capacity_provider" {
 
   auto_scaling_group_provider {
     auto_scaling_group_arn = aws_autoscaling_group.primary_ecs_asg.arn
-
     managed_scaling {
       status          = "ENABLED"
       target_capacity = 100
     }
-
     managed_termination_protection = "ENABLED"
   }
 }

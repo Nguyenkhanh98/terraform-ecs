@@ -45,4 +45,5 @@ resource "aws_autoscaling_group" "primary_ecs_asg" {
     value               = "primary-ecs-instance"
     propagate_at_launch = true
   }
+  protect_from_scale_in = true
 }
