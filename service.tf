@@ -54,7 +54,7 @@ resource "aws_ecs_service" "onair_api_service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_admin_tg.arn
     container_name   = "onair-api-container"
-    container_port   = 3003
+    container_port   = 3005
   }
 }
 
@@ -67,7 +67,7 @@ resource "aws_ecs_service" "cms_service" {
   launch_type     = "EC2"
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.onair_admin_tg.arn
+    target_group_arn = aws_lb_target_group.onair_cms_tg.arn
     container_name   = "cms-container"
     container_port   = 1338
   }
