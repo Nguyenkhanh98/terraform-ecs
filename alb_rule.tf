@@ -29,6 +29,21 @@ resource "aws_lb_listener_rule" "onair_fe_rule" {
     target_group_arn = aws_lb_target_group.onair_fe_tg.arn
   }
 }
+resource "aws_lb_listener_rule" "onair_host_rule" {
+  listener_arn = aws_lb_listener.https_listener.arn
+  priority     = 30
+
+  condition {
+     host_header {
+      values = ["host.onair.today"]
+    }
+  }
+
+  action{
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.onair_host_tg.arn
+  }
+}
 
 resource "aws_lb_listener_rule" "onair_admin_rule" {
   listener_arn = aws_lb_listener.onair_http_listener.arn
