@@ -5,6 +5,12 @@ resource "aws_ecs_service" "onair_fe_service" {
   task_definition = aws_ecs_task_definition.onair_fe.arn
   desired_count   = 2
   launch_type     = "EC2"
+
+    load_balancer {
+    target_group_arn = aws_lb_target_group.onair_fe_tg.arn
+    container_name   = "onair_fe-container"
+    container_port   = 3000
+  }
 }
 
 # ECS Service for Admin Panel
@@ -17,7 +23,7 @@ resource "aws_ecs_service" "onair_admin_service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_fe_tg.arn
-    container_name   = "onair-fe"
+    container_name   = "onair_admin-container"
     container_port   = 3000
   }
 }
@@ -32,7 +38,7 @@ resource "aws_ecs_service" "onair_host_service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_host_tg.arn
-    container_name   = "onair-host"
+    container_name   = "onair_host-container"
     container_port   = 3001
   }
 }
@@ -47,7 +53,7 @@ resource "aws_ecs_service" "onair_api_service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_admin_tg.arn
-    container_name   = "onair-admin"
+    container_name   = "onair-api-container"
     container_port   = 3003
   }
 }
@@ -62,7 +68,7 @@ resource "aws_ecs_service" "cms_service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_admin_tg.arn
-    container_name   = "onair-cms"
+    container_name   = "cms-container"
     container_port   = 1338
   }
 }
