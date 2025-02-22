@@ -14,6 +14,10 @@ resource "aws_ecs_task_definition" "onair_fe" {
       cpu          = 256
       essential    = true
       portMappings = [{ containerPort = 3000 }]
+
+      repositoryCredentials = {
+        credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
+      }
     }
   ])
 }
@@ -33,6 +37,10 @@ resource "aws_ecs_task_definition" "onair_admin" {
       cpu          = 256
       essential    = true
       portMappings = [{ containerPort = 3003 }]
+
+        repositoryCredentials = {
+        credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
+      }
     }
   ])
 }
@@ -52,6 +60,10 @@ resource "aws_ecs_task_definition" "onair_host" {
       cpu          = 256
       essential    = true
       portMappings = [{ containerPort = 3001 }]
+
+        repositoryCredentials = {
+        credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
+      }
     }
   ])
 }
@@ -71,6 +83,10 @@ resource "aws_ecs_task_definition" "onair-api" {
       cpu          = 256
       essential    = true
       portMappings = [{ containerPort = 3005 }]
+
+        repositoryCredentials = {
+        credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
+      }
     }
   ])
 }
@@ -91,6 +107,10 @@ resource "aws_ecs_task_definition" "cms" {
       cpu          = 512
       essential    = true
       portMappings = [{ containerPort = 1338 }]
+
+        repositoryCredentials = {
+        credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
+      }
     }
   ])
 }
