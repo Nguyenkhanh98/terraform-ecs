@@ -14,6 +14,12 @@ resource "aws_ecs_service" "onair_admin_service" {
   task_definition = aws_ecs_task_definition.onair_admin.arn
   desired_count   = 2
   launch_type     = "EC2"
+    
+    load_balancer {
+    target_group_arn = aws_lb_target_group.onair_fe_tg.arn
+    container_name   = "onair-fe"
+    container_port   = 3000
+  }
 }
 
 # ECS Service for Host Panel
@@ -23,6 +29,12 @@ resource "aws_ecs_service" "onair_host_service" {
   task_definition = aws_ecs_task_definition.onair_host.arn
   desired_count   = 2
   launch_type     = "EC2"
+
+   load_balancer {
+    target_group_arn = aws_lb_target_group.onair_host_tg.arn
+    container_name   = "onair-host"
+    container_port   = 3001
+  }
 }
 
 # ECS Service for API
@@ -32,6 +44,12 @@ resource "aws_ecs_service" "onair_api_service" {
   task_definition = aws_ecs_task_definition.onair-api.arn
   desired_count   = 2
   launch_type     = "EC2"
+
+     load_balancer {
+    target_group_arn = aws_lb_target_group.onair_admin_tg.arn
+    container_name   = "onair-admin"
+    container_port   = 3003
+  }
 }
 
 # ECS Service for Strapi CMS
@@ -41,4 +59,10 @@ resource "aws_ecs_service" "cms_service" {
   task_definition = aws_ecs_task_definition.cms.arn
   desired_count   = 2
   launch_type     = "EC2"
+
+   load_balancer {
+    target_group_arn = aws_lb_target_group.onair_admin_tg.arn
+    container_name   = "onair-cms"
+    container_port   = 1338
+  }
 }
