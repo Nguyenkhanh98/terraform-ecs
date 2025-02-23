@@ -110,7 +110,15 @@ resource "aws_ecs_task_definition" "cms" {
       memory       = 1024
       cpu          = 512
       essential    = true
-      portMappings = [{ containerPort = 1338 }]
+            environment = [
+        for key, value in var.variables : {
+          name  = key
+          value = value
+        }
+      ]
+      portMappings = [{ containerPort = 1338
+         hostPort      = 1338
+       }]
 
         repositoryCredentials = {
         credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
