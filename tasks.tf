@@ -111,7 +111,7 @@ resource "aws_ecs_task_definition" "cms" {
       cpu          = 512
       essential    = true
             environment = [
-        for key, value in var.variables : {
+        for key, value in var.cms_variables : {
           name  = key
           value = value
         }
