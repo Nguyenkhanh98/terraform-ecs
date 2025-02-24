@@ -56,7 +56,7 @@ resource "aws_ecs_service" "onair_api_service" {
 deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
   load_balancer {
-    target_group_arn = aws_lb_target_group.onair_admin_tg.arn
+    target_group_arn = aws_lb_target_group.onair_api_tg.arn
     container_name   = "onair-api-container"
     container_port   = 3005
   }
