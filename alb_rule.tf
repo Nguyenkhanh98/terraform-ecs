@@ -17,7 +17,7 @@ resource "aws_lb_listener" "onair_https_listener" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = "arn:aws:acm:ap-southeast-1:497082176439:certificate/0809d984-62d9-429e-979a-9ffa68a05e45arn:aws:acm:ap-southeast-1:497082176439:certificate/0809d984-62d9-429e-979a-9ffa68a05e45"  
+  certificate_arn   = "arn:aws:acm:ap-southeast-1:497082176439:certificate/0809d984-62d9-429e-979a-9ffa68a05e45"  
 
   default_action {
     type = "fixed-response"
@@ -29,20 +29,20 @@ resource "aws_lb_listener" "onair_https_listener" {
   }
 }
 
-resource "aws_lb_listener" "onair_http_redirect" {
-  load_balancer_arn = aws_lb.onair_alb.arn
-  port              = 80
-  protocol          = "HTTP"
+# resource "aws_lb_listener" "onair_http_redirect" {
+#   load_balancer_arn = aws_lb.onair_alb.arn
+#   port              = 80
+#   protocol          = "HTTP"
 
-  default_action {
-    type = "redirect"
-    redirect {
-      protocol    = "HTTPS"
-      port        = "443"
-      status_code = "HTTP_301"
-    }
-  }
-}
+#   default_action {
+#     type = "redirect"
+#     redirect {
+#       protocol    = "HTTPS"
+#       port        = "443"
+#       status_code = "HTTP_301"
+#     }
+#   }
+# }
 
 
 
