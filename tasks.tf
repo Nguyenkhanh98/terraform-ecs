@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "onair_fe" {
   container_definitions = jsonencode([
     {
       name         = "onair_fe-container"
-      image        = "onairtoday/onair:web-latest"
+      image        = "onairtoday/onair:${var.image_tag_fe}"
       memory       = 512
       cpu          = 256
       essential    = true
@@ -33,7 +33,7 @@ resource "aws_ecs_task_definition" "onair_admin" {
   container_definitions = jsonencode([
     {
       name         = "onair_admin-container"
-      image        = "onairtoday/onair:admin-latest"
+      image        = "onairtoday/onair:${var.image_tag_admin}"
       memory       = 512
       cpu          = 256
       essential    = true
@@ -57,7 +57,7 @@ resource "aws_ecs_task_definition" "onair_host" {
   container_definitions = jsonencode([
     {
       name         = "onair_host-container"
-      image        = "onairtoday/onair:host-latest"
+      image        = "onairtoday/onair:${var.image_tag_host}"
       memory       = 512
       cpu          = 256
       essential    = true
@@ -81,7 +81,7 @@ resource "aws_ecs_task_definition" "onair-api" {
   container_definitions = jsonencode([
     {
       name         = "onair-api-container"
-      image        = "onairtoday/onair:main-api-latest"
+      image        = "onairtoday/onair:${var.image_tag_api}"
       memory       = 512
       cpu          = 256
       essential    = true
@@ -106,7 +106,7 @@ resource "aws_ecs_task_definition" "cms" {
   container_definitions = jsonencode([
     {
       name         = "cms-container"
-      image        = "onairtoday/onair:master-cms-latest"
+      image        = "onairtoday/onair:${var.image_tag_cms}"
       memory       = 1024
       cpu          = 512
       essential    = true
