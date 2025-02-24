@@ -1,17 +1,17 @@
-# resource "aws_lb_listener" "onair_http_listener" {
-#   load_balancer_arn = aws_lb.onair_alb.arn
-#   port              = 80
-#   protocol          = "HTTP"
+resource "aws_lb_listener" "onair_http_listener" {
+  load_balancer_arn = aws_lb.onair_alb.arn
+  port              = 80
+  protocol          = "HTTP"
   
-#   default_action {
-#     type             = "fixed-response"
-#     fixed_response {
-#       content_type = "text/plain"
-#       message_body = "Not Found"
-#       status_code  = "404"
-#     }
-#   }
-# }
+  default_action {
+    type             = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "Not Found"
+      status_code  = "404"
+    }
+  }
+}
 resource "aws_lb_listener" "onair_https_listener" {
   load_balancer_arn = aws_lb.onair_alb.arn
   port              = 443
