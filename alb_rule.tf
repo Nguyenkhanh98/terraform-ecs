@@ -2,7 +2,7 @@
 #   load_balancer_arn = aws_lb.onair_alb.arn
 #   port              = 80
 #   protocol          = "HTTP"
-  
+
 #   default_action {
 #     type             = "fixed-response"
 #     fixed_response {
@@ -17,7 +17,7 @@ resource "aws_lb_listener" "onair_https_listener" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = "arn:aws:acm:ap-southeast-1:497082176439:certificate/0809d984-62d9-429e-979a-9ffa68a05e45"  
+  certificate_arn   = "arn:aws:acm:ap-southeast-1:497082176439:certificate/0809d984-62d9-429e-979a-9ffa68a05e45"
 
   default_action {
     type = "fixed-response"
@@ -100,12 +100,12 @@ resource "aws_lb_listener_rule" "onair_host_https_rule" {
   priority     = 30
 
   condition {
-     host_header {
+    host_header {
       values = ["host.onair.today"]
     }
   }
 
-  action{
+  action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.onair_host_tg.arn
   }
@@ -169,7 +169,7 @@ resource "aws_lb_listener_rule" "onair_api_https_rule" {
     }
   }
 
-  action{
+  action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.onair_api_tg.arn
   }
@@ -201,7 +201,7 @@ resource "aws_lb_listener_rule" "cms_https_rule" {
     }
   }
 
-  action{
+  action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.onair_cms_tg.arn
   }

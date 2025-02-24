@@ -13,7 +13,7 @@ resource "aws_ecs_capacity_provider" "primary_provider" {
     }
     managed_termination_protection = "ENABLED"
   }
-  
+
 }
 
 resource "aws_ecs_cluster_capacity_providers" "primary" {

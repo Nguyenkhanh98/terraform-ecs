@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_instance_role" {
-  count = 1  # Ensure only one IAM role is created
+  count = 1 # Ensure only one IAM role is created
   name  = "ecs-instance-role"
 
   assume_role_policy = jsonencode({
@@ -16,11 +16,11 @@ resource "aws_iam_role" "ecs_instance_role" {
 
 resource "aws_iam_instance_profile" "ecs_instance_profile" {
   name = "ecs-instance-profile"
-  role = aws_iam_role.ecs_instance_role[0].name  # Fix: use [0] to reference the role
+  role = aws_iam_role.ecs_instance_role[0].name # Fix: use [0] to reference the role
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_instance_policy" {
-  role       = aws_iam_role.ecs_instance_role[0].name  # Fix: use [0] to reference the role
+  role       = aws_iam_role.ecs_instance_role[0].name # Fix: use [0] to reference the role
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
 }
 
@@ -50,11 +50,11 @@ resource "aws_iam_policy_attachment" "ecs_task_execution_policy" {
 resource "aws_iam_policy" "ecs_secrets_policy" {
   name        = "ecs-secrets-access"
   description = "Allow ECS to access Secrets Manager"
-  policy      = jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Effect   = "Allow"
-      Action   = [
+      Effect = "Allow"
+      Action = [
         "secretsmanager:GetSecretValue",
         "secretsmanager:DescribeSecret"
       ]
