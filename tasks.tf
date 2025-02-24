@@ -20,7 +20,7 @@ resource "aws_ecs_task_definition" "onair_fe" {
         }
       ]
       portMappings = [{ containerPort = 3000 }]
-
+      command      = ["yarn", "workspace", "web", "server"]
       repositoryCredentials = {
         credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
       }
@@ -29,7 +29,7 @@ resource "aws_ecs_task_definition" "onair_fe" {
 }
 
 resource "aws_ecs_task_definition" "onair_admin" {
-  family                   = "onair_fe-task"
+  family                   = "onair_admin-task"
   requires_compatibilities = ["EC2"]
   network_mode             = "bridge"
   memory                   = "512"
@@ -50,7 +50,7 @@ resource "aws_ecs_task_definition" "onair_admin" {
         }
       ]
       portMappings = [{ containerPort = 3003 }]
-
+      command      = ["yarn", "workspace", "admin", "server"]
         repositoryCredentials = {
         credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
       }
@@ -80,7 +80,7 @@ resource "aws_ecs_task_definition" "onair_host" {
         }
       ]
       portMappings = [{ containerPort = 3001 }]
-
+    command      = ["yarn", "workspace", "host", "server"]
         repositoryCredentials = {
         credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
       }
