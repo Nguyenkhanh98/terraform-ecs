@@ -66,15 +66,9 @@ resource "aws_ecs_service" "cms_service" {
   desired_count   = 2
   launch_type     = "EC2"
 
-  deployment_controller {
-    type = "ECS"
-  }
+deployment_minimum_healthy_percent = 50
+  deployment_maximum_percent         = 200
 
-  deployment_configuration {
-    minimum_healthy_percent = 50
-    maximum_percent         = 200
-  }
-  
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_cms_tg.arn
     container_name   = "cms-container"
