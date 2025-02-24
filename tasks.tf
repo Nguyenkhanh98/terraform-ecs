@@ -13,6 +13,12 @@ resource "aws_ecs_task_definition" "onair_fe" {
       memory       = 512
       cpu          = 256
       essential    = true
+       environment = [
+        for key, value in var.fe_variables : {
+          name  = key
+          value = value
+        }
+      ]
       portMappings = [{ containerPort = 3000 }]
 
       repositoryCredentials = {
@@ -37,6 +43,12 @@ resource "aws_ecs_task_definition" "onair_admin" {
       memory       = 512
       cpu          = 256
       essential    = true
+       environment = [
+        for key, value in var.admin_variables : {
+          name  = key
+          value = value
+        }
+      ]
       portMappings = [{ containerPort = 3003 }]
 
         repositoryCredentials = {
@@ -61,6 +73,12 @@ resource "aws_ecs_task_definition" "onair_host" {
       memory       = 512
       cpu          = 256
       essential    = true
+       environment = [
+        for key, value in var.host_variables : {
+          name  = key
+          value = value
+        }
+      ]
       portMappings = [{ containerPort = 3001 }]
 
         repositoryCredentials = {
@@ -85,6 +103,12 @@ resource "aws_ecs_task_definition" "onair-api" {
       memory       = 512
       cpu          = 256
       essential    = true
+       environment = [
+        for key, value in var.api_variables : {
+          name  = key
+          value = value
+        }
+      ]
       portMappings = [{ containerPort = 3005 }]
 
         repositoryCredentials = {
@@ -110,7 +134,7 @@ resource "aws_ecs_task_definition" "cms" {
       memory       = 1024
       cpu          = 512
       essential    = true
-            environment = [
+      environment = [
         for key, value in var.cms_variables : {
           name  = key
           value = value
