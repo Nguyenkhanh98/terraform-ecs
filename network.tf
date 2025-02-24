@@ -27,7 +27,8 @@ resource "aws_security_group" "ecs_sg" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    security_groups = [aws_security_group.alb_sg.id]
+    cidr_blocks = ["0.0.0.0/0"]
+
   }
 
 
@@ -70,13 +71,6 @@ resource "aws_security_group" "alb_sg" {
   ingress {
     from_port   = 443
     to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Publicly accessible
-  }
-
-    ingress {
-    from_port   = 22
-    to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Publicly accessible
   }
