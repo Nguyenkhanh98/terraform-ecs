@@ -127,6 +127,14 @@ resource "aws_ecs_task_definition" "cms" {
   cpu                      = "512"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
+  deployment_controller {
+    type = "ECS"
+  }
+
+  deployment_configuration {
+    minimum_healthy_percent = 50
+    maximum_percent         = 200
+  }
   container_definitions = jsonencode([
     {
       name         = "cms-container"
