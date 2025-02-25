@@ -104,3 +104,4 @@ resource "aws_ecs_service" "cms_service" {
     container_port   = 1338
   }
 }
+
