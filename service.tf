@@ -12,10 +12,7 @@ resource "aws_ecs_service" "onair_fe_service" {
     type       = "distinctInstance"
   }
 
-  placement_strategy {
-    type  = "spread"
-    field = "attribute:ecs.availability-zone"
-  }
+
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_fe_tg.arn
     container_name   = "onair_fe-container"
@@ -37,10 +34,7 @@ resource "aws_ecs_service" "onair_admin_service" {
     type       = "distinctInstance"
   }
 
-  placement_strategy {
-    type  = "spread"
-    field = "attribute:ecs.availability-zone"
-  }
+
 
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_admin_tg.arn
@@ -63,10 +57,7 @@ resource "aws_ecs_service" "onair_host_service" {
     type       = "distinctInstance"
   }
 
-  placement_strategy {
-    type  = "spread"
-    field = "attribute:ecs.availability-zone"
-  }
+
 
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_host_tg.arn
@@ -103,11 +94,7 @@ resource "aws_ecs_service" "cms_service" {
     type       = "distinctInstance"
   }
 
-  placement_strategy {
-    type  = "spread"
-    field = "attribute:ecs.availability-zone"
-  }
-
+ 
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
 
