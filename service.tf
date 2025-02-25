@@ -7,6 +7,15 @@ resource "aws_ecs_service" "onair_fe_service" {
   launch_type                        = "EC2"
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
+
+    placement_constraints {
+    type       = "distinctInstance"
+  }
+
+  placement_strategy {
+    type  = "spread"
+    field = "attribute:ecs.availability-zone"
+  }
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_fe_tg.arn
     container_name   = "onair_fe-container"
@@ -23,6 +32,16 @@ resource "aws_ecs_service" "onair_admin_service" {
   launch_type                        = "EC2"
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
+
+    placement_constraints {
+    type       = "distinctInstance"
+  }
+
+  placement_strategy {
+    type  = "spread"
+    field = "attribute:ecs.availability-zone"
+  }
+
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_admin_tg.arn
     container_name   = "onair_admin-container"
@@ -39,6 +58,16 @@ resource "aws_ecs_service" "onair_host_service" {
   launch_type                        = "EC2"
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
+
+    placement_constraints {
+    type       = "distinctInstance"
+  }
+
+  placement_strategy {
+    type  = "spread"
+    field = "attribute:ecs.availability-zone"
+  }
+
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_host_tg.arn
     container_name   = "onair_host-container"
@@ -69,6 +98,15 @@ resource "aws_ecs_service" "cms_service" {
   task_definition = aws_ecs_task_definition.cms.arn
   desired_count   = 2
   launch_type     = "EC2"
+
+  placement_constraints {
+    type       = "distinctInstance"
+  }
+
+  placement_strategy {
+    type  = "spread"
+    field = "attribute:ecs.availability-zone"
+  }
 
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
