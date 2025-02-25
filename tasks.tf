@@ -123,8 +123,8 @@ resource "aws_ecs_task_definition" "cms" {
   family                   = "cms-task"
   requires_compatibilities = ["EC2"]
   network_mode             = "bridge"
-  memory                   = "1024"
-  cpu                      = "512"
+  memory                   = "512"
+  cpu                      = "256"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
 
