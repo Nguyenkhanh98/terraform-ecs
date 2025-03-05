@@ -60,7 +60,7 @@ resource "aws_lb_target_group" "onair_api_tg" {
 
 
   health_check {
-    path                = "/"
+    path                = "/v1/health"
     interval            = 30
     timeout             = 5
     healthy_threshold   = 3
