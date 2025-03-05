@@ -19,7 +19,9 @@ resource "aws_ecs_task_definition" "onair_fe" {
           value = value
         }
       ]
-      portMappings = [{ containerPort = 3000 }]
+      portMappings = [{ containerPort = 3000 ,
+        hostPort = 3000
+      }]
       command      = ["yarn", "workspace", "web", "server"]
       repositoryCredentials = {
         credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
@@ -57,7 +59,10 @@ resource "aws_ecs_task_definition" "onair_admin" {
           value = value
         }
       ]
-      portMappings = [{ containerPort = 3003 }]
+      portMappings = [{ containerPort = 3003,
+      
+        hostPort = 3003
+      }]
       command      = ["yarn", "workspace", "admin", "server"]
       repositoryCredentials = {
         credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
@@ -95,7 +100,9 @@ resource "aws_ecs_task_definition" "onair_host" {
           value = value
         }
       ]
-      portMappings = [{ containerPort = 3001 }]
+      portMappings = [{ containerPort = 3001,
+        hostPort = 3001
+       }]
       command      = ["yarn", "workspace", "host", "server"]
       repositoryCredentials = {
         credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
@@ -133,7 +140,9 @@ resource "aws_ecs_task_definition" "onair-api" {
           value = value
         }
       ]
-      portMappings = [{ containerPort = 3005 }]
+      portMappings = [{ containerPort = 3005,
+        hostPort = 3005
+       }]
 
       repositoryCredentials = {
         credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
