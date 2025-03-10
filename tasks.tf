@@ -174,8 +174,8 @@ resource "aws_ecs_task_definition" "cms" {
     {
       name      = "cms-container"
       image     = "onairtoday/onair:${var.image_tag_cms}"
-      memory    = 512
-      cpu       = 256
+      memory    = 1024
+      cpu       = 512
       essential = true
       environment = [
         for key, value in var.cms_variables : {
