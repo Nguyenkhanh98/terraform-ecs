@@ -4,4 +4,5 @@ resource "aws_lb" "onair_alb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
   subnets            = var.subnet_ids
+   idle_timeout       = 300 
 }
