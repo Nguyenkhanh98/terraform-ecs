@@ -67,11 +67,11 @@ resource "aws_lb_target_group" "onair_api_tg" {
     unhealthy_threshold = 2
     matcher             = "200-299"
   }
-  #   stickiness {
-  #   type            = "lb_cookie"
-  #   enabled         = true
-  #   cookie_duration = 86400  # 1 day in seconds (adjust as needed)
-  # }
+    stickiness {
+    type            = "lb_cookie"
+    enabled         = false
+    cookie_duration = 86400  # 1 day in seconds (adjust as needed)
+  }
 }
 
 resource "aws_lb_target_group" "onair_cms_tg" {
