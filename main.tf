@@ -16,6 +16,17 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
+variable "private_subnet_ids" {
+  description = "A list of subnet IDs"
+  type        = list(string)
+}
+
+variable "availability_zones" {
+  description = "List of availability zones corresponding to private subnets"
+  type        = list(string)
+}
+
+
 variable "ecs_cluster_name" {
   description = "Name of the ECS cluster"
   type        = string
