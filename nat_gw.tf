@@ -1,16 +1,15 @@
-resource "aws_eip" "nat" {
-  domain   = "vpc"
-}
+
 
 resource "aws_nat_gateway" "nat" {
 
-  allocation_id = aws_eip.nat.id
+  allocation_id = "eipalloc-0b3455fba59c6f0eb"
   subnet_id     = var.subnet_ids[0]
 
   tags = {
     Name = "nat-gateway"
   }
 }
+
 
 resource "aws_route_table" "private_rt" {
   vpc_id = var.vpc_id
