@@ -12,6 +12,7 @@ resource "aws_nat_gateway" "nat" {
 
 data "aws_route_table" "existing_route" {
   route_table_id = "rtb-0ffa223b7e59c84f2"
+   destination_cidr_block = "0.0.0.0/0"
 }
 
 
@@ -21,8 +22,6 @@ resource "aws_route_table" "private_rt" {
 
 
 resource "aws_route" "nat_gateway_route" {
-  count = length(var.subnet_ids)
-
   route_table_id         =  data.aws_route_table.existing_route.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat.id
