@@ -10,9 +10,6 @@ resource "aws_nat_gateway" "nat" {
   }
 }
 
-data "aws_route_table" "existing_route" {
-  route_table_id = "rtb-0ffa223b7e59c84f2"
-}
 
 
 resource "aws_route_table" "private_rt" {
@@ -21,11 +18,10 @@ resource "aws_route_table" "private_rt" {
 
 
 resource "aws_route" "nat_gateway_route" {
-  route_table_id         =  data.aws_route_table.existing_route.id
+  route_table_id         =  aws_route_table.private_rt.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat.id
 
-  depends_on = [data.aws_route_table.existing_route]
 }
 
 resource "aws_route_table_association" "private" {
