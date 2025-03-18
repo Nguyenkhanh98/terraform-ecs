@@ -6,11 +6,11 @@ resource "aws_eip" "nat" {
 resource "aws_nat_gateway" "nat" {
   count = length(var.subnet_ids)
 
-  allocation_id = aws_eip.nat[count.index].id
-  subnet_id     = var.subnet_ids[count.index]
+  allocation_id = aws_eip.nat.id
+  subnet_id     = var.subnet_ids[0]
 
   tags = {
-    Name = "nat-gateway-${var.availability_zones[count.index]}"
+    Name = "nat-gateway"
   }
 }
 
@@ -24,5 +24,5 @@ resource "aws_route" "nat_gateway_route" {
 
   route_table_id         = aws_route_table.private_rt.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat[count.index].id
+  nat_gateway_id         = aws_nat_gateway.nat.id
 }
