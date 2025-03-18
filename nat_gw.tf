@@ -12,7 +12,6 @@ resource "aws_nat_gateway" "nat" {
 
 data "aws_route_table" "existing_route" {
   route_table_id = "rtb-0ffa223b7e59c84f2"
-   destination_cidr_block = "0.0.0.0/0"
 }
 
 
