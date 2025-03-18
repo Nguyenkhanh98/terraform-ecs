@@ -13,7 +13,7 @@ resource "aws_ecs_service" "onair_fe_service" {
   }
 
   network_configuration {
-    subnets         = [aws_subnet.private[*].id]
+    subnets         = var.private_subnet_ids
     security_groups = [aws_security_group.ecs_sg.id]
     assign_public_ip = false
   }
@@ -40,7 +40,7 @@ resource "aws_ecs_service" "onair_admin_service" {
   }
 
   network_configuration {
-    subnets         = [aws_subnet.private[*].id]
+    subnets         = var.private_subnet_ids
     security_groups = [aws_security_group.ecs_sg.id]
     assign_public_ip = false
   }
@@ -68,7 +68,7 @@ resource "aws_ecs_service" "onair_host_service" {
   }
 
    network_configuration {
-    subnets         = [aws_subnet.private[*].id]
+    subnets         = var.private_subnet_ids
     security_groups = [aws_security_group.ecs_sg.id]
     assign_public_ip = false
   }
@@ -91,7 +91,7 @@ resource "aws_ecs_service" "onair_api_service" {
   deployment_maximum_percent         = 200
 
    network_configuration {
-    subnets         = [aws_subnet.private[*].id]
+    subnets         = var.private_subnet_ids
     security_groups = [aws_security_group.ecs_sg.id]
     assign_public_ip = false
   }
@@ -117,7 +117,7 @@ resource "aws_ecs_service" "cms_service" {
 
  
   network_configuration {
-    subnets         = [aws_subnet.private[*].id]
+    subnets         = var.private_subnet_ids
     security_groups = [aws_security_group.ecs_sg.id]
     assign_public_ip = false
   }
