@@ -12,12 +12,6 @@ resource "aws_ecs_service" "onair_fe_service" {
     type       = "distinctInstance"
   }
 
-  network_configuration {
-    subnets         = var.private_subnet_ids
-    security_groups = [aws_security_group.ecs_sg.id]
-    assign_public_ip = false
-  }
-
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_fe_tg.arn
     container_name   = "onair_fe-container"
@@ -37,12 +31,6 @@ resource "aws_ecs_service" "onair_admin_service" {
 
     placement_constraints {
     type       = "distinctInstance"
-  }
-
-  network_configuration {
-    subnets         = var.private_subnet_ids
-    security_groups = [aws_security_group.ecs_sg.id]
-    assign_public_ip = false
   }
 
 
@@ -67,11 +55,6 @@ resource "aws_ecs_service" "onair_host_service" {
     type       = "distinctInstance"
   }
 
-   network_configuration {
-    subnets         = var.private_subnet_ids
-    security_groups = [aws_security_group.ecs_sg.id]
-    assign_public_ip = false
-  }
 
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_host_tg.arn
@@ -90,11 +73,6 @@ resource "aws_ecs_service" "onair_api_service" {
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
 
-   network_configuration {
-    subnets         = var.private_subnet_ids
-    security_groups = [aws_security_group.ecs_sg.id]
-    assign_public_ip = false
-  }
 
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_api_tg.arn
@@ -115,12 +93,6 @@ resource "aws_ecs_service" "cms_service" {
     type       = "distinctInstance"
   }
 
- 
-  network_configuration {
-    subnets         = var.private_subnet_ids
-    security_groups = [aws_security_group.ecs_sg.id]
-    assign_public_ip = false
-  }
 
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
