@@ -27,9 +27,7 @@ resource "aws_route" "nat_gateway_route" {
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat.id
 
-    lifecycle {
-    ignore_changes = [destination_cidr_block]
-  }
+  depends_on = [data.aws_route_table.existing_route]
 }
 
 resource "aws_route_table_association" "private" {
