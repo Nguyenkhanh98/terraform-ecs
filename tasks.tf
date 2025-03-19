@@ -4,14 +4,14 @@ resource "aws_ecs_task_definition" "onair_fe" {
   requires_compatibilities = ["EC2"]
   network_mode             = "bridge"
   memory                   = "512"
-  cpu                      = "256"
+  cpu                      = "512"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   container_definitions = jsonencode([
     {
       name      = "onair_fe-container"
       image     = "onairtoday/onair:${var.image_tag_fe}"
       memory    = 512
-      cpu       = 256
+      cpu       = 512
       essential = true
       environment = [
         for key, value in var.fe_variables : {
