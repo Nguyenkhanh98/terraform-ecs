@@ -38,14 +38,14 @@ EOF
   }
 
   network_interfaces {
-    associate_public_ip_address = false
+    associate_public_ip_address = true
     security_groups             = [aws_security_group.ecs_sg.id]
   }
 }
 
 resource "aws_autoscaling_group" "primary_ecs_asg" {
   name                = "primary-ecs"
-  vpc_zone_identifier = var.private_subnet_ids
+  vpc_zone_identifier = var.subnet_ids
   min_size            = 2
   max_size            = 4
   desired_capacity    = 3
