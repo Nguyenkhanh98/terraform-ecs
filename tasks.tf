@@ -11,7 +11,7 @@ resource "aws_ecs_task_definition" "onair_fe" {
       name      = "onair_fe-container"
       image     = "onairtoday/onair:${var.image_tag_fe}"
       memory    = 1000
-      cpu       = 550
+      cpu       = 500
       essential = true
       environment = [
         for key, value in var.fe_variables : {
@@ -129,7 +129,7 @@ resource "aws_ecs_task_definition" "onair-api" {
       name      = "onair-api-container"
       image     = "onairtoday/onair:${var.image_tag_api}"
       memory    = 3000
-      cpu       = 900
+      cpu       = 800
       essential = true
       environment = [
         for key, value in var.api_variables : {
