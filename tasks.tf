@@ -121,14 +121,14 @@ resource "aws_ecs_task_definition" "onair-api" {
   requires_compatibilities = ["EC2"]
   network_mode             = "bridge"
   memory                   = "1300"
-  cpu                      = "900"
+  cpu                      = "600"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
   container_definitions = jsonencode([
     {
       name      = "onair-api-container"
       image     = "onairtoday/onair:${var.image_tag_api}"
-      memory    = 3000
+      memory    = 1300
       cpu       = 600
       essential = true
       environment = [
