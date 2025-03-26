@@ -129,7 +129,7 @@ resource "aws_ecs_task_definition" "onair-api" {
       name      = "onair-api-container"
       image     = "onairtoday/onair:${var.image_tag_api}"
       memory    = 3000
-      cpu       = 700
+      cpu       = 600
       essential = true
       environment = [
         for key, value in var.api_variables : {
