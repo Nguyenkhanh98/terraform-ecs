@@ -4,14 +4,14 @@ resource "aws_ecs_task_definition" "onair_fe" {
   requires_compatibilities = ["EC2"]
   network_mode             = "bridge"
   memory                   = "1000"
-  cpu                      = "700"
+  cpu                      = "600"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   container_definitions = jsonencode([
     {
       name      = "onair_fe-container"
       image     = "onairtoday/onair:${var.image_tag_fe}"
       memory    = 1000
-      cpu       = 700
+      cpu       = 600
       essential = true
       environment = [
         for key, value in var.fe_variables : {
@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "onair_admin" {
   requires_compatibilities = ["EC2"]
   network_mode             = "bridge"
   memory                   = "500"
-  cpu                      = "500"
+  cpu                      = "450"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
   container_definitions = jsonencode([
@@ -50,7 +50,7 @@ resource "aws_ecs_task_definition" "onair_admin" {
       name      = "onair_admin-container"
       image     = "onairtoday/onair:${var.image_tag_admin}"
       memory    = 500
-      cpu       = 500
+      cpu       = 450
       essential = true
       environment = [
         for key, value in var.admin_variables : {
@@ -121,7 +121,7 @@ resource "aws_ecs_task_definition" "onair-api" {
   requires_compatibilities = ["EC2"]
   network_mode             = "bridge"
   memory                   = "3000"
-  cpu                      = "1200"
+  cpu                      = "1100"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
   container_definitions = jsonencode([
@@ -129,7 +129,7 @@ resource "aws_ecs_task_definition" "onair-api" {
       name      = "onair-api-container"
       image     = "onairtoday/onair:${var.image_tag_api}"
       memory    = 3000
-      cpu       = 1200
+      cpu       = 1100
       essential = true
       environment = [
         for key, value in var.api_variables : {
@@ -162,7 +162,7 @@ resource "aws_ecs_task_definition" "cms" {
   requires_compatibilities = ["EC2"]
   network_mode             = "bridge"
   memory                   = "1000"
-  cpu                      = "500"
+  cpu                      = "400"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
 
@@ -171,7 +171,7 @@ resource "aws_ecs_task_definition" "cms" {
       name      = "cms-container"
       image     = "onairtoday/onair:${var.image_tag_cms}"
       memory    = 1000
-      cpu       = 500
+      cpu       = 400
       essential = true
       environment = [
         for key, value in var.cms_variables : {
