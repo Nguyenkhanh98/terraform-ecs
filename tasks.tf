@@ -120,7 +120,7 @@ resource "aws_ecs_task_definition" "onair-api" {
   family                   = "onair-api-task"
   requires_compatibilities = ["EC2"]
   network_mode             = "bridge"
-  memory                   = "3000"
+  memory                   = "1300"
   cpu                      = "900"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
