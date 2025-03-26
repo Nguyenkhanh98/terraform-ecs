@@ -50,7 +50,7 @@ resource "aws_ecs_task_definition" "onair_admin" {
       name      = "onair_admin-container"
       image     = "onairtoday/onair:${var.image_tag_admin}"
       memory    = 500
-      cpu       = 450
+      cpu       = 400
       essential = true
       environment = [
         for key, value in var.admin_variables : {
@@ -129,7 +129,7 @@ resource "aws_ecs_task_definition" "onair-api" {
       name      = "onair-api-container"
       image     = "onairtoday/onair:${var.image_tag_api}"
       memory    = 3000
-      cpu       = 800
+      cpu       = 700
       essential = true
       environment = [
         for key, value in var.api_variables : {
@@ -171,7 +171,7 @@ resource "aws_ecs_task_definition" "cms" {
       name      = "cms-container"
       image     = "onairtoday/onair:${var.image_tag_cms}"
       memory    = 1000
-      cpu       = 400
+      cpu       = 350
       essential = true
       environment = [
         for key, value in var.cms_variables : {
