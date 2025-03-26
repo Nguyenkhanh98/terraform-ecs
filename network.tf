@@ -2,25 +2,10 @@ resource "aws_security_group" "ecs_sg" {
   vpc_id = var.vpc_id
 
   ingress {
-    from_port       = 3005
-    to_port         = 3005
+    from_port       = 0
+    to_port         = 65535
     protocol        = "tcp"
-    security_groups = [aws_security_group.alb_sg.id]
-  }
-
-  ingress {
-    from_port       = 1338
-    to_port         = 1338
-    protocol        = "tcp"
-    security_groups = [aws_security_group.alb_sg.id]
-  }
-
-
-  ingress {
-    from_port       = 3001
-    to_port         = 3001
-    protocol        = "tcp"
-    security_groups = [aws_security_group.alb_sg.id]
+    security_groups = [aws_security_group.asg_sg.id]
   }
 
   ingress {
@@ -30,24 +15,6 @@ resource "aws_security_group" "ecs_sg" {
     cidr_blocks = ["0.0.0.0/0"]
 
   }
-
-
-
-  ingress {
-    from_port       = 3003
-    to_port         = 3003
-    protocol        = "tcp"
-    security_groups = [aws_security_group.alb_sg.id]
-  }
-
-  ingress {
-    from_port       = 3000
-    to_port         = 3000
-    protocol        = "tcp"
-    security_groups = [aws_security_group.alb_sg.id]
-  }
-
-
 
   egress {
     from_port   = 0
