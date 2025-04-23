@@ -18,7 +18,7 @@ resource "aws_ecs_service" "onair_fe_service" {
   
 
     capacity_provider_strategy {
-    capacity_provider = "public-capacity-provider"
+    capacity_provider = "public-provider"
     weight            = 1
   }
 
