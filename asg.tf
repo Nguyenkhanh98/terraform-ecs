@@ -90,4 +90,5 @@ resource "aws_autoscaling_group" "public_ecs_asg" {
     value               = "public-ecs-instance"
     propagate_at_launch = true
   }
+  protect_from_scale_in = true
 }
