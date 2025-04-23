@@ -8,9 +8,21 @@ resource "aws_ecs_service" "onair_fe_service" {
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
 
+  capacity_provider_strategy {
+    capacity_provider = "public-provider"
+    weight            = 1
+  }
     placement_constraints {
     type       = "distinctInstance"
   }
+
+  
+
+    capacity_provider_strategy {
+    capacity_provider = "public-capacity-provider"
+    weight            = 1
+  }
+
 
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_fe_tg.arn
@@ -29,6 +41,10 @@ resource "aws_ecs_service" "onair_admin_service" {
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
 
+  capacity_provider_strategy {
+    capacity_provider = "public-provider"
+    weight            = 1
+  }
     placement_constraints {
     type       = "distinctInstance"
   }
@@ -51,6 +67,10 @@ resource "aws_ecs_service" "onair_host_service" {
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
 
+  capacity_provider_strategy {
+    capacity_provider = "public-provider"
+    weight            = 1
+  }
     placement_constraints {
     type       = "distinctInstance"
   }
@@ -74,6 +94,14 @@ resource "aws_ecs_service" "onair_api_service" {
   deployment_maximum_percent         = 200
 
 
+  capacity_provider_strategy {
+    capacity_provider = "primary-provider"
+    weight            = 1
+  }
+
+  placement_constraints {
+    type       = "distinctInstance"
+  }
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_api_tg.arn
     container_name   = "onair-api-container"
@@ -88,6 +116,13 @@ resource "aws_ecs_service" "cms_service" {
   task_definition = aws_ecs_task_definition.cms.arn
   desired_count   = 2
   launch_type     = "EC2"
+
+
+
+  capacity_provider_strategy {
+    capacity_provider = "primary-provider"
+    weight            = 1
+  }
 
   placement_constraints {
     type       = "distinctInstance"

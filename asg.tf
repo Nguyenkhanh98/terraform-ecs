@@ -14,7 +14,7 @@ resource "aws_launch_template" "ecs_launch_template" {
   block_device_mappings {
     device_name = "/dev/xvda"
     ebs {
-      volume_size = 50
+      volume_size = 25
     }
   }
 
@@ -48,7 +48,7 @@ resource "aws_autoscaling_group" "primary_ecs_asg" {
   vpc_zone_identifier = var.private_subnet_ids
   min_size            = 2
   max_size            = 4
-  desired_capacity    = 3
+  desired_capacity    = 2
 
   launch_template {
     id      = aws_launch_template.ecs_launch_template.id
@@ -66,4 +66,28 @@ resource "aws_autoscaling_group" "primary_ecs_asg" {
     propagate_at_launch = true
   }
   protect_from_scale_in = true
+}
+
+resource "aws_autoscaling_group" "public_ecs_asg" {
+  name                = "public-ecs"
+  vpc_zone_identifier = var.subnet_ids
+  min_size            = 2
+  max_size            = 4
+  desired_capacity    = 2
+
+  launch_template {
+    id      = aws_launch_template.ecs_launch_template.id
+    version = data.aws_launch_template.ecs_launch_template.latest_version
+  }
+  tag {
+    key                 = "aws:ecs:cluster"
+    value               = aws_ecs_cluster.primary_cluster.name
+    propagate_at_launch = true
+  }
+
+  tag {
+    key                 = "Name"
+    value               = "public-ecs-instance"
+    propagate_at_launch = true
+  }
 }
