@@ -4,7 +4,6 @@ resource "aws_ecs_service" "onair_fe_service" {
   cluster                            = aws_ecs_cluster.primary_cluster.id
   task_definition                    = aws_ecs_task_definition.onair_fe.arn
   desired_count                      = 2
-  launch_type                        = "EC2"
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
 
@@ -37,7 +36,6 @@ resource "aws_ecs_service" "onair_admin_service" {
   cluster                            = aws_ecs_cluster.primary_cluster.id
   task_definition                    = aws_ecs_task_definition.onair_admin.arn
   desired_count                      = 2
-  launch_type                        = "EC2"
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
 
@@ -63,7 +61,6 @@ resource "aws_ecs_service" "onair_host_service" {
   cluster                            = aws_ecs_cluster.primary_cluster.id
   task_definition                    = aws_ecs_task_definition.onair_host.arn
   desired_count                      = 2
-  launch_type                        = "EC2"
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
 
@@ -89,7 +86,6 @@ resource "aws_ecs_service" "onair_api_service" {
   cluster                            = aws_ecs_cluster.primary_cluster.id
   task_definition                    = aws_ecs_task_definition.onair-api.arn
   desired_count                      = 2
-  launch_type                        = "EC2"
   deployment_minimum_healthy_percent = 50
   deployment_maximum_percent         = 200
 
@@ -115,7 +111,6 @@ resource "aws_ecs_service" "cms_service" {
   cluster         = aws_ecs_cluster.primary_cluster.id
   task_definition = aws_ecs_task_definition.cms.arn
   desired_count   = 2
-  launch_type     = "EC2"
 
 
 
