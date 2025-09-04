@@ -1,5 +1,5 @@
 resource "aws_lb_listener_rule" "onair_ld_https_rule" {
-  listener_arn = aws_lb_listener.onair_https_listener.arn
+  listener_arn = aws_lb_listener.onair_ld_https_listener.arn
   priority     = 30
 
   condition {
@@ -14,7 +14,7 @@ resource "aws_lb_listener_rule" "onair_ld_https_rule" {
   }
 }
 
-resource "aws_lb_listener" "onair_https_listener" {
+resource "aws_lb_listener" "onair_ld_https_listener" {
   load_balancer_arn = aws_lb.onair_ld_alb.arn
   port              = 443
   protocol          = "HTTPS"
