@@ -1,5 +1,5 @@
 resource "aws_lb_listener_rule" "onair_ld_https_rule" {
-  listener_arn = var.https_listener_arn
+  listener_arn = aws_lb_listener.onair_https_listener.arn
   priority     = 30
 
   condition {

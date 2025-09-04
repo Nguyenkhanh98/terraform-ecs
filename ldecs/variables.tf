@@ -13,16 +13,8 @@ variable "ecs_cluster_name" {
   type        = string
 }
 
-variable "https_listener_arn" {
-  description = "The ARN of the HTTPS listener"
-  type        = string
-}
 
-variable "alb_sg_id" {
-    description = "The security group ID for the ALB"
-    type        = string
-    default     = ""
-}
+
 variable "subnet_ids" {
     description = "The subnet IDs for the ALB"
     type        = list(string)
