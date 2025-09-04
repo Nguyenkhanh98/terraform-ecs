@@ -31,7 +31,7 @@ resource "aws_lb_listener" "onair_https_listener" {
   }
 }
 resource "aws_lb_listener" "onair_http_redirect" {
-  load_balancer_arn = aws_lb.onair_alb.arn
+  load_balancer_arn = aws_lb.onair_ld_alb.arn
   port              = 80
   protocol          = "HTTP"
 
