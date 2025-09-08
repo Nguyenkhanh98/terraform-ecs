@@ -29,7 +29,7 @@
 #       status_code  = "404"
 #     }
 #   }
-}
+# }
 resource "aws_lb_listener" "onair_http_redirect" {
   load_balancer_arn = aws_lb.onair_ld_alb.arn
   port              = 80
