@@ -21,8 +21,8 @@ resource "aws_ecs_service" "onair_ld_service" {
     container_port   = 3000
   }
 
-  depends_on = [
-    aws_lb_listener.onair_http_listener,
-    aws_lb_listener_rule.onair_ld_http_rule
-  ]
+  # depends_on = [
+  #   aws_lb_listener.onair_http_listener,
+  #   aws_lb_listener_rule.onair_ld_http_rule
+  # ]
 }
