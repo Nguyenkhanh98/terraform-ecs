@@ -19,7 +19,7 @@ resource "aws_lb_listener" "onair_ld_https_listener" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = "arn:aws:acm:ap-southeast-1:497082176439:certificate/49fa462f-838c-4c69-8de1-8070423f77a2"
+  # certificate_arn   = "arn:aws:acm:ap-southeast-1:497082176439:certificate/49fa462f-838c-4c69-8de1-8070423f77a2"
 
   default_action {
     type = "fixed-response"
