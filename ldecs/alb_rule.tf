@@ -45,6 +45,21 @@
 #   }
 # }
 
+resource "aws_lb_listener" "onair_http_listener" {
+  load_balancer_arn = aws_lb.onair_ld_alb.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    type = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "Not Found"
+      status_code  = "404"
+    }
+  }
+}
+
 
 resource "aws_lb_target_group" "onair_ld_tg" {
   name        = "ld-tg"
@@ -64,7 +79,7 @@ resource "aws_lb_target_group" "onair_ld_tg" {
 
 
 resource "aws_lb_listener_rule" "onair_ld_http_rule" {
-  listener_arn = aws_lb_listener.onair_http_redirect.arn
+  listener_arn = aws_lb_listener.onair_http_listener.arn
   priority     = 30
 
   condition {
