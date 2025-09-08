@@ -10,21 +10,19 @@ resource "aws_ecs_service" "onair_ld_service" {
     capacity_provider = "public-provider"
     weight            = 1
   }
-    placement_constraints {
-    type       = "distinctInstance"
-  }
-
   
-
-    capacity_provider_strategy {
-    capacity_provider = "public-provider"
-    weight            = 1
+  placement_constraints {
+    type = "distinctInstance"
   }
-
 
   load_balancer {
     target_group_arn = aws_lb_target_group.onair_ld_tg.arn
     container_name   = "onair_ld-container"
     container_port   = 3000
   }
+
+  depends_on = [
+    aws_lb_listener.onair_http_listener,
+    aws_lb_listener_rule.onair_ld_http_rule
+  ]
 }
