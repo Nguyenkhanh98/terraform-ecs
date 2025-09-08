@@ -25,6 +25,14 @@ resource "aws_ecs_task_definition" "onair_ld" {
       repositoryCredentials = {
         credentialsParameter = "arn:aws:secretsmanager:ap-southeast-1:497082176439:secret:private-docker-credentials-27MkrS"
       }
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          awslogs-group         = "/ecs/onair"
+          awslogs-region        = "ap-southeast-1"
+          awslogs-stream-prefix = "onair_ld"
+        }
+      }
     }
   ])
 }
