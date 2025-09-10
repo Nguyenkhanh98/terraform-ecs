@@ -83,5 +83,5 @@ resource "aws_lb_listener_rule" "onair_ld_http_rule" {
   action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.onair_ld_tg.arn
-  }
+  } 
 }
